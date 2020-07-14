@@ -1,0 +1,39 @@
+user.show(function(data){
+    io.emit('listar',data);
+});
+
+//3.2
+
+socket.on('listar', function(data){
+    data = JSON.parse(data);
+    for(var i=0, j=data.length; i<j; i++){
+        fill(data[i]);
+    }
+});
+
+//3.3
+
+show: function(callback){
+    user_model.find({}, function(err,items){
+        if (!err) {
+            callback(JSON.stringify(items));
+        }else{
+            return console.log(err);
+        }
+    });
+},
+
+//3.6
+
+user.show(function(data){
+    socket-emit('listar, data');
+});
+
+//4.1
+
+$row.find('[name=btnAct]').click(function(){
+    var data = $(this).closest('tr').data('data');
+    $('#_id').val(data._id);
+    $('#first_name').val(data.first_name);
+    $('#last_name').val(data.last_name);
+})
