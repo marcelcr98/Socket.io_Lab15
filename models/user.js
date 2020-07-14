@@ -26,7 +26,6 @@ module.exports = {
 
         let nuevo = new userModel(item).save();
         callback(item);
-<<<<<<< HEAD
     },
     show: (callback)=>{
         userModel.find({},(err,items) =>{
@@ -54,7 +53,4 @@ module.exports = {
             callback(_id);
         });
     }  
-=======
-    } 
->>>>>>> df72bf0a4972435b6e1fcaa5e992ff4f6d65c53a
 }
