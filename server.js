@@ -1,4 +1,21 @@
-var createError = require('http-errors');
+var express =require('express')
+app=express(),
+http = require('http').Server(app),
+port = process.env.PORT || 3000;
+
+app.set('view engine', 'jade');
+
+app.use('/static', express.static('public'));
+
+app.get('/', function(req, res){
+  res.render('main')
+})
+
+http.listen(port, function(){
+  console.log('servidor conectadi en *:'+port);
+});
+
+/* var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -38,4 +55,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = app;*/
