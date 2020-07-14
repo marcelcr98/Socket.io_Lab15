@@ -1,19 +1,36 @@
-var express =require('express')
-app=express(),
-http = require('http').Server(app),
-port = process.env.PORT || 3000;
+const express =require('express');
+const user = require('./models/user');
+const app = express();
 
-app.set('view engine', 'jade');
+http = require('http').Server(app);
+io = require('socket.io')(http);
 
-app.use('/static', express.static('public'));
+app.set('port', process.env.PORT || 3000)
+.set('view engine','jade');
 
-app.get('/', function(req, res){
-  res.render('main')
-})
-
-http.listen(port, function(){
-  console.log('servidor conectadi en *:'+port);
+app.use('/static', express.static('public'))
+.get('/', (req, res) => {
+    res.render('main');
 });
+ 
+io.on('connection', (socket)=> {
+    console.log('Usuario conectado');
+    socket.on('crear', (data)=> {
+        user.create(data, (rpta)=> {
+            io.emit('nuevo', rpta);
+        });
+    });
+    socket.on('disconnect', () => {
+        console.log('Usuario desconectado');
+    });
+});
+
+http.listen(app.get('port'), ()=> {
+    console.log('Servidor conectado en el puerto  ', app.get('port'));
+});
+
+
+
 
 /* var createError = require('http-errors');
 var express = require('express');
