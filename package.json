@@ -12,7 +12,11 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+<<<<<<< HEAD
     "mongoose": "^5.9.18",
+=======
+    "mongoose": "^5.9.24",
+>>>>>>> df72bf0a4972435b6e1fcaa5e992ff4f6d65c53a
     "morgan": "~1.9.1",
     "socket.io": "^2.3.0"
   }
